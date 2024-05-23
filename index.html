@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .block {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><span>Animation</span><br>js video</h2>
+    </div>
+    <script src="/anime.min.js"></script>
+    <script>
+        const container = document.querySelector(".container");
+        for (let i = 0; i <= 100; i++) { // Corrected condition in the for loop
+            const block = document.createElement("div");
+            block.classList.add('block');
+            container.appendChild(block); // Append the block to the container
+        }
+
+        function AnimateBlocks() {
+            anime({
+                targets: '.block', // Corrected 'tragets' to 'targets'
+                translateX: function() {
+                    return anime.random(-700, 700);
+                },
+                translateY: function() {
+                    return anime.random(-500, 700);
+                },
+                scale:function(){
+            return anime.random(1,5)
+           },
+           easing: 'linear',
+                 duration: 3000, // Optional: specify the duration of the animation
+                // easing: 'easeInOutQuad', // Optional: specify the easing function
+                 delay: anime.stagger(10), // Optional: stagger the animation
+                complete :AnimateBlocks
+           
+           
+            });
+        }
+
+        AnimateBlocks();
+    </script>
+</body>
+</html>
